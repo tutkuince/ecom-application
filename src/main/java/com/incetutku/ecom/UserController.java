@@ -15,5 +15,9 @@ public class UserController {
         return userList;
     }
 
- 
+    @PostMapping
+    public User createUser(@RequestBody User user) {
+        userList.add(user);
+        return user;
+    }
 }
