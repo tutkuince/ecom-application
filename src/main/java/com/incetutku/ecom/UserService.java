@@ -18,4 +18,8 @@ public class UserService {
         user.setId(nextId++);
         userList.add(user);
     }
+
+    public User fetchUserById(Long id) {
+        return userList.stream().filter(user -> user.getId().equals(id)).findFirst().orElseThrow(RuntimeException::new);
+    }
 }
