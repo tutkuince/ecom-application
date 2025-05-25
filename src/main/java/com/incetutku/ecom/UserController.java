@@ -2,22 +2,26 @@ package com.incetutku.ecom;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-    private List<User> userList = new ArrayList<>();
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
     public List<User> getAllUsers() {
-        return userList;
+        return userService.fetchAllUsers();
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
-        userList.add(user);
-        return user;
+    public String createUser(@RequestBody User user) {
+        userService.addUser(user);
+        return "User added successfully.";
     }
 }
