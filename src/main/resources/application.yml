@@ -8,3 +8,8 @@ spring:
 
   datasource:
     url: jdbc:h2:mem:testDB
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
