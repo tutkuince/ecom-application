@@ -1,4 +1,4 @@
-package com.incetutku.ecom;
+package com.incetutku.ecom.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
