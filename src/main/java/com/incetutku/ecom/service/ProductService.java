@@ -7,6 +7,7 @@ import com.incetutku.ecom.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,6 +22,25 @@ public class ProductService {
         updateProductFromProductRequest(product, productRequest);
         Product savedProduct = productRepository.save(product);
         return mapToProductResponse(savedProduct);
+    }
+
+    public Optional<ProductResponse> updateProduct(Long id, ProductRequest productRequest) {
+        return productRepository.findById(id)
+                .map(existingProduct -> {
+                    updateProductFromProductRequest(existingProduct, productRequest);
+                    Product updatedProduct = productRepository.save(existingProduct);
+                    return mapToProductResponse(updatedProduct);
+                });
+    }
+
+    public List<ProductResponse> fetchAllProducts() {
+        return productRepository.findByIsActiveTrue().stream()
+                .map(this::mapToProductResponse).toList();
+    }
+
+    public Optional<ProductResponse> fetchProductById(Long id) {
+        return productRepository.findById(id)
+                .map(this::mapToProductResponse);
     }
 
     private ProductResponse mapToProductResponse(Product savedProduct) {
@@ -43,14 +63,5 @@ public class ProductService {
         product.setStockQuantity(productRequest.getStockQuantity());
         product.setCategory(productRequest.getCategory());
         product.setImageUrl(productRequest.getImageUrl());
-    }
-
-    public Optional<ProductResponse> updateProduct(Long id, ProductRequest productRequest) {
-        return productRepository.findById(id)
-                .map(existingProduct -> {
-                    updateProductFromProductRequest(existingProduct, productRequest);
-                    Product updatedProduct = productRepository.save(existingProduct);
-                    return mapToProductResponse(updatedProduct);
-                });
     }
 }
