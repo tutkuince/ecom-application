@@ -29,6 +29,11 @@ public class ProductController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<ProductResponse>> searchProducts(@RequestParam String  keyword) {
+        return ResponseEntity.ok(productService.searchProducts(keyword));
+    }
+
     @PostMapping
     public ResponseEntity<ProductResponse> createProduct(@RequestBody ProductRequest productRequest) {
         return new ResponseEntity<>(productService.createProduct(productRequest), HttpStatus.CREATED);
