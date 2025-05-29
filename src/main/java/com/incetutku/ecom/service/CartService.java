@@ -9,6 +9,7 @@ import com.incetutku.ecom.repository.ProductRepository;
 import com.incetutku.ecom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -25,8 +26,10 @@ public class CartService {
 
     public boolean addToCart(String userId, CartItemRequest cartItemRequest) {
         Optional<Product> optionalProduct = productRepository.findById(cartItemRequest.getProductId());
-        if (optionalProduct.isEmpty())
+        if (optionalProduct.isEmpty()) {
             return false;
+        }
+
 
         Product product = optionalProduct.get();
         if (product.getStockQuantity() < cartItemRequest.getQuantity()) {
@@ -63,5 +66,27 @@ public class CartService {
         productRepository.save(product);
 
         return true;
+    }
+
+    @Transactional
+    public boolean deleteItemFromCart(String userId, Long productId) {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        if (optionalProduct.isEmpty()) {
+            return false;
+        }
+
+        Optional<User> optionalUser = userRepository.findById(Long.valueOf(userId));
+        if (optionalUser.isEmpty()) {
+            return false;
+        }
+
+        optionalUser.flatMap(user ->
+                optionalProduct.map(product -> {
+                    cartItemRepository.deleteByUserAndProduct(user, product);
+                    return true;
+                })
+        );
+
+        return false;
     }
 }
