@@ -59,12 +59,12 @@ public class CartService {
             cartItem.setPrice(product.getPrice().multiply(BigDecimal.valueOf(cartItemRequest.getQuantity())));
             cartItemRepository.save(cartItem);
         }
-        int stock = product.getStockQuantity() - cartItemRequest.getQuantity();
+        /*int stock = product.getStockQuantity() - cartItemRequest.getQuantity();
         product.setStockQuantity(stock);
         if (stock == 0) {
             product.setIsActive(false);
         }
-        productRepository.save(product);
+        productRepository.save(product);*/
 
         return true;
     }
