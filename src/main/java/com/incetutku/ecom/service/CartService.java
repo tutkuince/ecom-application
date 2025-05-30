@@ -71,21 +71,14 @@ public class CartService {
     @Transactional
     public boolean deleteItemFromCart(String userId, Long productId) {
         Optional<Product> optionalProduct = productRepository.findById(productId);
-        if (optionalProduct.isEmpty()) {
-            return false;
-        }
-
         Optional<User> optionalUser = userRepository.findById(Long.valueOf(userId));
-        if (optionalUser.isEmpty()) {
-            return false;
-        }
+        if (optionalProduct.isPresent() && optionalUser.isPresent()) {
+            cartItemRepository.deleteByUserAndProduct(optionalUser.get(), optionalProduct.get());
 
-        optionalUser.flatMap(user ->
-                optionalProduct.map(product -> {
-                    cartItemRepository.deleteByUserAndProduct(user, product);
-                    return true;
-                })
-        );
+            Product product = optionalProduct.get();
+
+            return true;
+        }
 
         return false;
     }
