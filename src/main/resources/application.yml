@@ -24,3 +24,13 @@ management:
   endpoint:
     health:
       show-details: always
+
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: ecom-application
+    description: E-commerce App built by us
+    version: 1.0.0
