@@ -2,17 +2,17 @@ spring:
   application:
     name: ecom-application
 
-  h2:
-    console:
-      enabled: true
-
   datasource:
-    url: jdbc:h2:mem:testDB
+    url: jdbc:postgresql://localhost:5432/ecomdb
+    username: sa
+    password: s3cr3t
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 
 management:
