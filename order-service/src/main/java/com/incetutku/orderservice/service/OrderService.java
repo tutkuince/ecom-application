@@ -1,5 +1,8 @@
 package com.incetutku.orderservice.service;
 
+import com.incetutku.orderservice.dto.OrderItemDTO;
+import com.incetutku.orderservice.dto.OrderResponse;
+import com.incetutku.orderservice.model.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,7 +59,7 @@ public class OrderService {
         cartService.clearCart(userId);
 
         return Optional.of(mapToOrderResponse(savedOrder));
-    }
+    }*/
 
     private OrderResponse mapToOrderResponse(Order savedOrder) {
         return new OrderResponse(
@@ -66,12 +69,12 @@ public class OrderService {
                 savedOrder.getItems().stream()
                         .map(orderItem -> new OrderItemDTO(
                                 orderItem.getId(),
-                                orderItem.getProduct().getId(),
+                                orderItem.getProductId(),
                                 orderItem.getQuantity(),
                                 orderItem.getPrice(),
                                 orderItem.getPrice().multiply(BigDecimal.valueOf(orderItem.getQuantity()))
                         )).toList(),
                 savedOrder.getCreatedAt()
         );
-    }*/
+    }
 }
