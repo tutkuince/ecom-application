@@ -6,11 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CartItemRepository extends JpaRepository<CartItem, Long> {
-    CartItem findByUserAndProduct(User user, Product product);
+    CartItem findByUserIdAndProductId(String userId, String productId);
 
-    void deleteByUserAndProduct(User user, Product product);
+    void deleteByUserIdAndProductId(String userId, String productId);
 
-    List<CartItem> findByUser(User user);
+    List<CartItem> findByUserId(String userId);
 
-    void deleteByUser(User user);
+    void deleteByUserId(String userId);
 }
