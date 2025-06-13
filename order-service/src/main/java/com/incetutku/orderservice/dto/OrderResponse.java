@@ -1,6 +1,6 @@
 package com.incetutku.orderservice.dto;
 
-import com.incetutku.ecom.model.OrderStatus;
+import com.incetutku.orderservice.model.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

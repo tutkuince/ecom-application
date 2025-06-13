@@ -1,10 +1,5 @@
 package com.incetutku.orderservice.service;
 
-import com.incetutku.ecom.dto.OrderItemDTO;
-import com.incetutku.ecom.dto.OrderResponse;
-import com.incetutku.ecom.model.*;
-import com.incetutku.ecom.repository.OrderRepository;
-import com.incetutku.ecom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
