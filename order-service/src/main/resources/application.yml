@@ -6,16 +6,16 @@ spring:
     name: order-service
 
   datasource:
-    url: jdbc:h2:mem:orderDB
-
-  h2:
-    console:
-      enabled: true
+    url: jdbc:postgresql://localhost:5432/orderDB
+    username: sa
+    password: s3cr3t
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 
 management:

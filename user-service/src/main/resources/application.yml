@@ -6,16 +6,16 @@ spring:
     name: user-service
 
   datasource:
-    url: jdbc:h2:mem:userDB
-
-  h2:
-    console:
-      enabled: true
+    url: jdbc:postgresql://localhost:5432/userDB
+    username: sa
+    password: s3cr3t
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 
 management:
