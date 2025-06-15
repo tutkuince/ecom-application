@@ -6,38 +6,39 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "users")
+@Document(collection = "users")
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
     private String surname;
+
+    @Indexed(unique = true)
     private String email;
+
     @Column(name = "mobile_number")
     private String mobileNumber;
-    private UserRole role = UserRole.CUSTOMER;
 
-    @CreationTimestamp
+    private UserRole role = UserRole.CUSTOMER;
+    private Address address;
+
+    @CreatedDate
     private LocalDateTime createdAt;
 
-    @UpdateTimestamp
+    @LastModifiedDate
     private LocalDateTime updatedAt;
-
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Address address;
 }
