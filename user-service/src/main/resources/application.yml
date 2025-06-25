@@ -7,9 +7,7 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://localhost:27017/userDB
-      host: localhost
-      port: 27017
+      uri: mongodb+srv://incetutku:y8matr1mKb5eK1xA@user-data.6193mqx.mongodb.net/?retryWrites=true&w=majority&appName=user-data
       username: tutku
       password: s3cr3t
       database: userDB
