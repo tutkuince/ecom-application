@@ -6,9 +6,10 @@ spring:
     name: order-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/orderDB
-    username: sa
-    password: s3cr3t
+    url: jdbc:postgresql://ep-floral-smoke-a2nicy1h-pooler.eu-central-1.aws.neon.tech/orderDB?sslmode=require&channel_binding=require
+    username: neondb_owner
+    password: npg_sC5T9vbWNVLo
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
