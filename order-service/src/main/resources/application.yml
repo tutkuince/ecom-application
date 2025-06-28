@@ -5,10 +5,13 @@ spring:
   application:
     name: order-service
 
+  config:
+    import: optional:file:.env[.properties]
+
   datasource:
-    url: jdbc:postgresql://ep-floral-smoke-a2nicy1h-pooler.eu-central-1.aws.neon.tech/orderDB?sslmode=require&channel_binding=require
-    username: neondb_owner
-    password: npg_sC5T9vbWNVLo
+    url: ${POSTGESQL_ORDER_DB_URL}
+    username: ${POSTGESQL_ORDER_DB_USERNAME}
+    password: ${POSTGESQL_ORDER_DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:

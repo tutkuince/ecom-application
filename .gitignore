@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+user-service/.env
+product-service/.env
+order-service/.env

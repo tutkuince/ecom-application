@@ -5,12 +5,15 @@ spring:
   application:
     name: user-service
 
+  config:
+    import: optional:file:.env[.properties]
+
   data:
     mongodb:
-      uri: mongodb+srv://incetutku:y8matr1mKb5eK1xA@user-data.6193mqx.mongodb.net/?retryWrites=true&w=majority&appName=user-data
-      username: tutku
-      password: s3cr3t
-      database: userDB
+      uri: ${MONGO_DB_URI}
+      username: ${MONGO_DB_USERNAME}
+      password: ${MONGO_DB_PASSWORD}
+      database: ${MONGO_DB_DATABASE}
 
 management:
   endpoints:

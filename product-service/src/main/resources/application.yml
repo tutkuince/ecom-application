@@ -5,10 +5,13 @@ spring:
   application:
     name: product-service
 
+  config:
+    import: optional:file:.env[.properties]
+
   datasource:
-    url: jdbc:postgresql://ep-misty-lab-a26wr2tx-pooler.eu-central-1.aws.neon.tech/productDB?sslmode=require&channel_binding=require
-    username: neondb_owner
-    password: npg_sC5T9vbWNVLo
+    url: ${POSTGESQL_PRODUCT_DB_URL}
+    username: ${POSTGESQL_PRODUCT_DB_USERNAME}
+    password: ${POSTGESQL_PRODUCT_DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
