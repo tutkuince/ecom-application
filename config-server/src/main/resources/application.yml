@@ -1,3 +1,6 @@
+server:
+  port: 8888
+
 spring:
   application:
     name: config-server
@@ -7,3 +10,7 @@ spring:
       server:
         git:
           uri: "https://github.com/tutkuince/ecom-application-config-server.git"
+          default-label: master
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
