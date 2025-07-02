@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/orderDB
-    username: sa
-    password: s3cr3t
+    url: ${POSTGESQL_ORDER_DB_URL}
+    username: ${POSTGESQL_ORDER_DB_USERNAME}
+    password: ${POSTGESQL_ORDER_DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
