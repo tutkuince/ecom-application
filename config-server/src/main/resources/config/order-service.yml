@@ -15,23 +15,14 @@ spring:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 management:
   endpoints:
     web:
       exposure:
         include: '*'
-
-  endpoint:
-    health:
-      show-details: always
-
-  info:
-    env:
-      enabled: true
-
-info:
-  app:
-    name: order-service
-    description: Order Service App built by us
-    version: 1.0.0

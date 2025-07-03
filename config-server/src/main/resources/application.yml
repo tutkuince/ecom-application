@@ -12,4 +12,16 @@ spring:
     config:
       server:
         native:
-          search-locations: classpath:/config
+          search-locations: file:///C:\Users\tutku\IdeaProjects\ecom-application\config-server\src\main\resources\config
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

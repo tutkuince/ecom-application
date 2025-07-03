@@ -2,7 +2,6 @@ server:
   port: 8081
 
 spring:
-
   datasource:
     url: ${POSTGESQL_PRODUCT_DB_URL}
     username: ${POSTGESQL_PRODUCT_DB_USERNAME}
@@ -16,23 +15,15 @@ spring:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
 
 management:
   endpoints:
     web:
       exposure:
         include: '*'
-
-  endpoint:
-    health:
-      show-details: always
-
-  info:
-    env:
-      enabled: true
-
-info:
-  app:
-    name: product-service
-    description: Product Service App built by us
-    version: 1.0.0

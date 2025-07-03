@@ -12,22 +12,14 @@ spring:
       password: ${MONGO_DB_PASSWORD}
       database: ${MONGO_DB_DATABASE}
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
 management:
   endpoints:
     web:
       exposure:
         include: '*'
-
-  endpoint:
-    health:
-      show-details: always
-
-  info:
-    env:
-      enabled: true
-
-info:
-  app:
-    name: ecom-application
-    description: E-commerce App built by us
-    version: 1.0.0
