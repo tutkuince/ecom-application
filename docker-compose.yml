@@ -1,7 +1,8 @@
 services:
+
   postgres:
     container_name: postgres_container
-    image: postgres
+    image: postgres:latest
     environment:
       POSTGRES_USER: sa
       POSTGRES_PASSWORD: s3cr3t
@@ -11,12 +12,12 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - postgres
+      - backend
     restart: unless-stopped
 
   pgadmin:
     container_name: pgadmin_container
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:latest
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
@@ -26,12 +27,26 @@ services:
     ports:
       - "5050:80"
     networks:
-      - postgres
+      - backend
+    restart: unless-stopped
+
+  rabbitmq:
+    container_name: rabbitmq_container
+    image: rabbitmq:4-management
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"   # RabbitMQ Message Broker
+      - "15672:15672" # RabbitMQ Management UI (http://localhost:15672)
+    networks:
+      - backend
     restart: unless-stopped
 
 
+
 networks:
-  postgres:
+  backend:
     driver: bridge
 
 volumes:
